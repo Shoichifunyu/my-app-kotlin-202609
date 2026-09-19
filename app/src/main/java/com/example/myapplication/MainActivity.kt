@@ -16,6 +16,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,16 +68,18 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         )
     )
 
-    Column(
+    LazyColumn(
         modifier = modifier.padding(16.dp)
     ) {
-        Text(
-            text = "Study Dashboard",
-            fontSize = 28.sp,
-            fontWeight = FontWeight.Bold
-        )
+        item{
+            Text(
+                text = "Study Dashboard",
+                fontSize = 28.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
 
-        for (study in studies) {
+        items(studies) { study ->
             Text(study.title)
             Text("進捗: ${study.progress}%")
             Text("学習時間: ${study.studyHours}時間")
