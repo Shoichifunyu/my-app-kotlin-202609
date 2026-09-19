@@ -45,11 +45,25 @@ data class Study(
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    val study = Study(
-        title = "AWS SAA",
-        progress = 65,
-        studyHours = 32,
-        questionCount = 420
+    val studies = listOf(
+        Study(
+            title = "AWS SAA",
+            progress = 65,
+            studyHours = 32,
+            questionCount = 420
+        ),
+        Study(
+            title = "AWS DEA",
+            progress = 65,
+            studyHours = 32,
+            questionCount = 420
+        ),
+        Study(
+            title = "応用情報技術者",
+            progress = 65,
+            studyHours = 32,
+            questionCount = 420
+        )
     )
 
     Column(
@@ -61,14 +75,12 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             fontWeight = FontWeight.Bold
         )
 
-        Text(study.title)
-        Text("進捗: ${study.progress}%")
-        Text("学習時間: ${study.studyHours}時間")
-        Text("問題数: ${study.questionCount}問")
-
-        Text("AWS DEA")
-
-        Text("応用情報技術者")
+        for (study in studies) {
+            Text(study.title)
+            Text("進捗: ${study.progress}%")
+            Text("学習時間: ${study.studyHours}時間")
+            Text("問題数: ${study.questionCount}問")
+        }
     }
 }
 
