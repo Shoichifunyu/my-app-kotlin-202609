@@ -8,16 +8,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.myapplication.ui.theme.MyApplicationTheme
-import androidx.compose.foundation.layout.Column
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,12 +79,17 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         }
 
         items(studies) { study ->
-            Text(study.title)
-            Text("進捗: ${study.progress}%")
+            StudyCard(study)
             Text("学習時間: ${study.studyHours}時間")
             Text("問題数: ${study.questionCount}問")
         }
     }
+}
+
+@Composable
+fun StudyCard(study: Study) {
+    Text(text = study.title)
+    Text(text = "進捗: ${study.progress}%")
 }
 
 @Preview(showBackground = true)
