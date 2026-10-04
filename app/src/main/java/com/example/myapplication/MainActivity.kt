@@ -93,8 +93,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 
         items(studies) { study ->
             StudyCard(study)
-            Text("学習時間: ${study.studyHours}時間")
-            Text("問題数: ${study.questionCount}問")
         }
     }
 }
@@ -109,6 +107,10 @@ fun StudyCard(study: Study) {
         ) {
             Text(text = study.title)
             Text(text = "進捗: ${study.progress}%")
+            Text(text = "計画進捗: ${study.plannedProgress}%")
+            Text(text = "学習時間: ${study.studyHours}時間")
+            Text(text = "問題数: ${study.questionCount}問")
+            Text(text = "合格目標日: ${study.targetDate}")
         }
     }
 }
