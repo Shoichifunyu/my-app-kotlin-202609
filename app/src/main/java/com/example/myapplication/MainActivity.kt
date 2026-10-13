@@ -5,6 +5,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -19,7 +22,6 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.material3.Card
-import androidx.compose.foundation.layout.fillMaxWidth
 
 
 class MainActivity : ComponentActivity() {
@@ -105,12 +107,28 @@ fun StudyCard(study: Study) {
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
-            Text(text = study.title)
-            Text(text = "進捗: ${study.progress}%")
-            Text(text = "計画進捗: ${study.plannedProgress}%")
-            Text(text = "学習時間: ${study.studyHours}時間")
-            Text(text = "問題数: ${study.questionCount}問")
-            Text(text = "合格目標日: ${study.targetDate}")
+            InfoRow(
+                label = "進捗",
+                value = "${study.progress}%"
+            )
+            InfoRow(
+                label = "計画進捗",
+                value = "${study.plannedProgress}%"
+            )
+
+            InfoRow(
+                label = "学習時間",
+                value = "${study.studyHours}時間"
+            )
+            InfoRow(
+                label = "問題数",
+                value = "${study.questionCount}問"
+            )
+
+            InfoRow(
+                label = "合格目標日",
+                value = study.targetDate
+            )
         }
     }
 }
@@ -120,5 +138,19 @@ fun StudyCard(study: Study) {
 fun GreetingPreview() {
     MyApplicationTheme {
         Greeting("Android")
+    }
+}
+
+@Composable
+fun InfoRow(label: String, value: String) {
+    Row(modifier = Modifier.fillMaxWidth()) {
+        Text(text = label)
+
+        Spacer(
+            modifier = Modifier.weight(1f)
+        )
+
+        Text(text = value)
+
     }
 }
